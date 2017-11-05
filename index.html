@@ -1,0 +1,62 @@
+  <script>
+  var balance = 100.0; //set initial balance.
+	
+    var acciones = {
+      balance : function() {
+		alert('Su balance total es: '+balance);
+		cajero();
+	},
+      depositar: function(){
+		var deposito = parseFloat(prompt('Cuanto desea depositar?'));
+		if (isNaN(deposito) || deposito === '') {
+			alert('Error: Ingrese un numero!');
+			this.depositar();
+		} else {
+			balance += deposito;
+			this.balance();
+		}
+      },
+      retirar: function () {
+		var retiro = parseFloat(prompt('Cuanto desea retirar?'));
+		if (isNaN(retiro) || retiro === '') {
+			alert('Error: Ingrese un numero!');
+			this.retirar();
+		} else {
+			balance -= retiro;
+			this.balance();
+		}
+      },
+      error: function(){
+		alert('Error: Solo numeros del 1 al 4.');
+		cajero();
+      },
+      salir: function() {
+		var confirmar = confirm('Esta seguro que desea salir?.');
+		if (confirmar) {
+            alert('vuelva pronto!');
+			window.close();
+		} else 
+			cajero();
+	}
+    }
+	
+	
+	
+	
+	function cajero() {
+		var choice = parseInt(prompt('Selecciona una opcion 1.) Balance 2.) Deposito 3.) Sacar 4.) Salir')); //prompt user for choice.
+		switch(choice){
+          case 1: acciones.balance();
+            break;
+          case 2: acciones.depositar();
+            break;
+          case 3: acciones.retirar();
+            break;
+          case 4: acciones.salir();
+            break;
+          default: acciones.error();
+            break;
+        }
+	}
+	cajero();
+</script>
